@@ -1,177 +1,420 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daham Pasal Exam Booster - 2024</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    <title>Daham Pasal Exam Booster - Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', 'Noto Sans Sinhala', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; overflow-x: hidden; }
-
-        /* Background Gradients */
-        .bg-gradient { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 20% 20%, rgba(255, 200, 0, 0.08) 0%, transparent 40%), radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.06) 0%, transparent 40%), radial-gradient(circle at 50% 50%, rgba(255, 165, 0, 0.03) 0%, transparent 50%); }
-
-        /* Password Lock Screen */
-        #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.97); display: flex; justify-content: center; align-items: center; z-index: 10000; backdrop-filter: blur(10px); }
-        .login-box { background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.98)); padding: 50px 40px; border-radius: 24px; border: 2px solid rgba(255, 165, 0, 0.4); text-align: center; max-width: 440px; width: 90%; box-shadow: 0 0 60px rgba(255, 165, 0, 0.3); animation: pulseGlow 4s ease-in-out infinite; }
-        @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 40px rgba(255, 165, 0, 0.3); } 50% { box-shadow: 0 0 70px rgba(255, 165, 0, 0.5); } }
-        .input-group input { width: 100%; padding: 16px 20px; border-radius: 12px; background: rgba(20, 20, 20, 0.8); border: 2px solid rgba(255, 165, 0, 0.4); color: #ffcc00; font-size: 1.1em; text-align: center; }
-        .login-btn { width: 100%; padding: 16px; border-radius: 12px; background: linear-gradient(135deg, #ffa500, #ff8c00); color: #000; font-weight: 800; cursor: pointer; border: none; font-family: 'Poppins', sans-serif; }
-
-        /* Main Content */
-        #mainContent { display: none; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .hero-section { text-align: center; padding: 80px 20px 60px; }
-        .hero-section h1 { font-family: 'Poppins', sans-serif; font-size: 3em; color: #ffcc00; margin-bottom: 15px; }
-        .section-title { font-family: 'Poppins', sans-serif; font-size: 2em; color: #ffcc00; text-align: center; margin-bottom: 40px; }
-        
-        /* Video Player */
-        .video-container { background: rgba(20, 20, 20, 0.6); padding: 20px; border-radius: 20px; border: 2px solid rgba(255, 165, 0, 0.3); max-width: 900px; margin: 0 auto 40px; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #000; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        /* Lessons Grid */
-        .lessons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .lesson-card { background: rgba(20, 20, 20, 0.6); border-radius: 16px; overflow: hidden; border: 2px solid rgba(255, 165, 0, 0.2); text-decoration: none; transition: 0.3s; }
-        .lesson-card:hover { transform: translateY(-8px); border-color: #ffa500; }
-        .lesson-thumb { width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; }
-        
-        /* Chatbot Button Style */
-        .chatbot-button { background: linear-gradient(135deg, #ffa500, #ff8c00); color: #000; padding: 18px 25px; border-radius: 14px; border: none; font-weight: 800; cursor: pointer; width: 100%; max-width: 400px; }
-
-        /* --- CHATBOT VISIBILITY CONTROL --- */
-        #chatbase-bubble-button, #chatbase-bubble-window {
-            display: none !important;
-            visibility: hidden !important;
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #000000; 
+            color: #fff; 
+            min-height: 100vh; 
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 200, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 100, 0, 0.05) 0%, transparent 50%);
         }
-        body.unlocked #chatbase-bubble-button {
-            display: block !important;
-            visibility: visible !important;
+        
+        /* Login UI */
+        #loginOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); display: flex;
+            justify-content: center; align-items: center; z-index: 9999;
+        }
+        .login-box {
+            background: rgba(10, 10, 10, 0.9); 
+            padding: 40px; 
+            border-radius: 20px;
+            border: 2px solid #ffa500; 
+            text-align: center; 
+            max-width: 450px; 
+            width: 90%;
+            box-shadow: 
+                0 0 30px rgba(255, 165, 0, 0.5),
+                0 0 60px rgba(255, 165, 0, 0.3),
+                inset 0 0 20px rgba(255, 165, 0, 0.1);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 165, 0, 0.5), 0 0 60px rgba(255, 165, 0, 0.3), inset 0 0 20px rgba(255, 165, 0, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(255, 165, 0, 0.7), 0 0 80px rgba(255, 165, 0, 0.4), inset 0 0 30px rgba(255, 165, 0, 0.15); }
+        }
+        .login-box h2 { 
+            color: #ffa500; 
+            margin-bottom: 20px; 
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.5);
+        }
+        
+        .legal-warning {
+            background: rgba(255, 50, 0, 0.1); 
+            border: 1px solid #ff4500;
+            padding: 15px; 
+            border-radius: 10px; 
+            margin-bottom: 25px; 
+            text-align: left;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+        }
+        .legal-warning p { 
+            color: #ff6347; 
+            font-size: 0.9em; 
+            font-weight: 600; 
+            line-height: 1.5;
+            text-shadow: 0 0 5px rgba(255, 99, 71, 0.5);
+        }
+
+        .input-group input {
+            width: 100%; 
+            padding: 15px; 
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.8); 
+            border: 2px solid #ffa500; 
+            color: #ffcc00;
+            margin-bottom: 15px; 
+            text-align: center; 
+            font-size: 1.1em;
+            box-shadow: 
+                0 0 10px rgba(255, 165, 0, 0.3),
+                inset 0 0 10px rgba(255, 165, 0, 0.1);
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #ffcc00;
+            box-shadow: 
+                0 0 20px rgba(255, 204, 0, 0.6),
+                inset 0 0 15px rgba(255, 204, 0, 0.2);
+        }
+        .input-group input::placeholder {
+            color: rgba(255, 204, 0, 0.5);
+        }
+        .login-btn {
+            width: 100%; 
+            padding: 15px; 
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ffa500, #ff8c00); 
+            color: #000; 
+            font-weight: 800; 
+            cursor: pointer; 
+            border: none; 
+            transition: 0.3s;
+            font-size: 1em;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 0 20px rgba(255, 165, 0, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .login-btn:hover {
+            background: linear-gradient(135deg, #ffcc00, #ffa500);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 0 30px rgba(255, 204, 0, 0.8),
+                0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Main Content UI */
+        #mainContent { 
+            display: none; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            animation: fadeIn 0.8s; 
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        header { 
+            text-align: center; 
+            padding: 40px 0; 
+            border-bottom: 2px solid rgba(255, 165, 0, 0.3);
+            box-shadow: 0 2px 20px rgba(255, 165, 0, 0.2);
+        }
+        header h1 { 
+            color: #ffcc00; 
+            font-size: 2.2em; 
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 
+                0 0 10px rgba(255, 204, 0, 0.8),
+                0 0 20px rgba(255, 204, 0, 0.5),
+                0 0 30px rgba(255, 204, 0, 0.3);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px rgba(255, 204, 0, 0.8), 0 0 20px rgba(255, 204, 0, 0.5), 0 0 30px rgba(255, 204, 0, 0.3); }
+            to { text-shadow: 0 0 15px rgba(255, 204, 0, 1), 0 0 30px rgba(255, 204, 0, 0.7), 0 0 45px rgba(255, 204, 0, 0.5); }
+        }
+
+        .video-container { 
+            background: rgba(10, 10, 10, 0.8); 
+            padding: 15px; 
+            border-radius: 25px; 
+            margin: 20px 0; 
+            border: 2px solid #ffa500;
+            box-shadow: 
+                0 0 20px rgba(255, 165, 0, 0.4),
+                inset 0 0 20px rgba(255, 165, 0, 0.05);
+        }
+        .video-wrapper { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            border-radius: 15px;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+        }
+        .video-wrapper iframe { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+        }
+        
+        .action-area { text-align: center; margin: 30px 0; }
+        .download-btn {
+            display: inline-flex; 
+            align-items: center; 
+            gap: 10px;
+            background: linear-gradient(135deg, #ff8c00, #ff6500); 
+            color: #000; 
+            padding: 18px 35px; 
+            border-radius: 15px; 
+            text-decoration: none; 
+            font-weight: 800;
+            transition: 0.3s;
+            box-shadow: 
+                0 0 20px rgba(255, 140, 0, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 0 30px rgba(255, 140, 0, 0.8),
+                0 10px 25px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #ffa500, #ff8c00);
+        }
+
+        /* Next Lessons Grid */
+        .next-lessons-title { 
+            color: #ffa500; 
+            margin: 40px 0 20px 0; 
+            font-family: 'Poppins', sans-serif; 
+            border-left: 4px solid #ffa500; 
+            padding-left: 15px;
+            text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
+        }
+        .lessons-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+            margin-bottom: 40px; 
+        }
+        .lesson-card { 
+            background: rgba(10, 10, 10, 0.8); 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 2px solid rgba(255, 165, 0, 0.3); 
+            transition: 0.3s; 
+            cursor: pointer; 
+            text-decoration: none; 
+            display: block;
+        }
+        .lesson-card:hover { 
+            transform: translateY(-5px); 
+            border-color: #ffa500; 
+            box-shadow: 
+                0 0 25px rgba(255, 165, 0, 0.5),
+                0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .lesson-thumb { 
+            width: 100%; 
+            aspect-ratio: 16/9; 
+            background-size: cover; 
+            background-position: center;
+            position: relative;
+        }
+        .lesson-thumb::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 165, 0, 0.1) 100%);
+        }
+        .lesson-info { padding: 15px; }
+        .lesson-info h4 { 
+            color: #ffcc00; 
+            font-size: 0.95em; 
+            margin: 0;
+            text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+        }
+
+        .support-box { 
+            background: rgba(10, 10, 10, 0.8); 
+            padding: 25px; 
+            border-radius: 20px; 
+            text-align: center; 
+            border: 2px solid #ff8c00; 
+            margin: 20px 0;
+            box-shadow: 
+                0 0 20px rgba(255, 140, 0, 0.3),
+                inset 0 0 20px rgba(255, 140, 0, 0.05);
+        }
+        .support-box p:last-child {
+            color: #ffa500;
+            text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
+            font-weight: 700;
+        }
+        
+        /* Normal Credits Section */
+        .credits-section { 
+            background: rgba(30, 30, 30, 0.5); 
+            padding: 15px; 
+            border-radius: 15px; 
+            text-align: center; 
+            border: 1px solid #333; 
+            margin: 30px 0;
+        }
+        .credits-section h3 { 
+            color: #888; 
+            font-size: 1.1em; 
+            margin: 5px 0;
+            text-shadow: none;
+            font-weight: 600;
+        }
+        .credits-section span {
+            color: #666;
+        }
+        
+        footer { 
+            text-align: center; 
+            color: rgba(255, 165, 0, 0.4); 
+            padding: 30px 0; 
+            font-size: 0.8em;
+            text-shadow: 0 0 5px rgba(255, 165, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6em; }
+            .login-box { padding: 30px 20px; }
+            .lessons-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ffcc00, #ff8c00);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
         }
     </style>
 </head>
-<body class="locked">
-    <div class="bg-gradient"></div>
+<body>
 
     <div id="loginOverlay">
         <div class="login-box">
-            <div class="icon" style="font-size: 3em;">🛡️</div>
-            <h2 style="color: #ffcc00; margin: 20px 0;">Access Required</h2>
+            <div style="font-size: 3em;">🛡️</div>
+            <h2>ප්‍රවේශය අවශ්‍යයි</h2>
+            <div class="legal-warning">
+                <p>⚠️ අවවාදයයි: මෙම දත්ත අවසරයකින් තොරව වෙනත් වාණිජ කටයුතු සඳහා යොදා ගැනීම තහනම්ය.</p>
+            </div>
             <div class="input-group">
-                <input type="password" id="accessKey" placeholder="Enter Password">
+                <input type="password" id="accessKey" placeholder="Password එක ගහන්න" autocomplete="off">
             </div>
             <button class="login-btn" onclick="checkAccess()">UNLOCK</button>
         </div>
     </div>
 
     <div id="mainContent">
-        <section class="hero-section">
-            <div class="container">
-                <h1>Daham Pasal Exam Booster</h1>
-                <p style="color: #ffa500;">2024 Final Batch Support</p>
-            </div>
-        </section>
+        <header>
+            <h1>Daham Pasal Exam Booster</h1>
+            <p style="color:#888;">2024 FINAL BATCH SUPPORT</p>
+        </header>
 
-        <section class="content-section">
-            <div class="container">
-                <h2 class="section-title">Video Lessons</h2>
-                <div class="video-container">
-                    <div id="videoContent"></div>
-                </div>
-            </div>
-        </section>
+        <div class="video-container">
+            <div id="videoContent"></div>
+        </div>
 
-        <section class="lessons-section" style="padding: 60px 0;">
-            <div class="container">
-                <div class="lessons-grid">
-                    <a href="?v=7xGCnhAkim4" class="lesson-card">
-                        <div class="lesson-thumb" style="background-image: url('https://img.youtube.com/vi/7xGCnhAkim4/mqdefault.jpg');"></div>
-                        <div style="padding: 20px;"><h3>01 කොටස - විභාග පෙරහුරුව</h3></div>
-                    </a>
-                    <a href="?v=npjUkaAj_0g" class="lesson-card">
-                        <div class="lesson-thumb" style="background-image: url('https://img.youtube.com/vi/npjUkaAj_0g/mqdefault.jpg');"></div>
-                        <div style="padding: 20px;"><h3>02 කොටස - සාරධර්ම අධ්‍යාපනය</h3></div>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <div class="action-area">
+            <a href="https://docs.google.com/document/d/1a456-vFwJgfDr_iZnIavIt4WyLH3PajT2-YOKtgJRg0/edit?usp=drive_link" target="_blank" class="download-btn">
+                📥 PDF නිබන්ධනය බාගත කරන්න
+            </a>
+        </div>
 
-        <section style="text-align: center; padding: 50px;">
-            <div class="container">
-                <div style="background: rgba(30,30,30,0.8); padding: 40px; border-radius: 20px; border: 1px solid #ffa500;">
-                    <h2 style="color: #ffcc00; margin-bottom: 20px;">ඔබගේ අධ්‍යයන සහායකයා</h2>
-                    <button class="chatbot-button" onclick="openChat()">චැට් බොට් එක අරින්න</button>
-                </div>
-            </div>
-        </section>
+        <h3 class="next-lessons-title">ඊළඟ පාඩම් (Suggested)</h3>
+        <div class="lessons-grid">
+            <a href="?v=7xGCnhAkim4" class="lesson-card">
+                <div class="lesson-thumb" style="background-image: url('https://img.youtube.com/vi/7xGCnhAkim4/mqdefault.jpg');"></div>
+                <div class="lesson-info"><h4>01 පාඩම - විභාග පෙරහුරුව</h4></div>
+            </a>
+            <a href="?v=npjUkaAj_0g" class="lesson-card">
+                <div class="lesson-thumb" style="background-image: url('https://img.youtube.com/vi/npjUkaAj_0g/mqdefault.jpg');"></div>
+                <div class="lesson-info"><h4>02 පාඩම - සාරධර්ම අධ්‍යාපනය</h4></div>
+            </a>
+        </div>
+
+        <div class="support-box">
+            <p style="color:#888;">සහය සඳහා:</p>
+            <p>dmpasalsupport@gmail.com</p>
+        </div>
+
+        <div class="credits-section">
+            <span style="font-size: 0.7em; text-transform: uppercase;">Special Thanks</span>
+            <h3>MUBRA WEBWORKS</h3>
+        </div>
+
+        <footer>© 2024 Daham Pasal Support Unit.</footer>
     </div>
 
     <script>
-        const secretKey = 'D2024';
+        const secretKey = 'Daham2024';
 
         function checkAccess() {
-            const val = document.getElementById('accessKey').value;
-            if (val === secretKey) {
+            const inputValue = document.getElementById('accessKey').value;
+            if (inputValue === secretKey) {
                 document.getElementById('loginOverlay').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
-                document.body.classList.add('unlocked');
                 loadVideo();
-                
-                // Show Bot after login
-                setTimeout(() => {
-                    const bot = document.getElementById('chatbase-bubble-button');
-                    if(bot) bot.style.setProperty('display', 'block', 'important');
-                }, 1000);
             } else {
-                alert('Incorrect Password!');
+                alert('වැරදි මුරපදයක්!');
+                document.getElementById('accessKey').value = '';
+                document.getElementById('accessKey').focus();
             }
         }
 
         function loadVideo() {
-            const params = new URLSearchParams(window.location.search);
-            const vID = params.get('v') || '7xGCnhAkim4';
+            const urlParams = new URLSearchParams(window.location.search);
+            const vID = urlParams.get('v') || '7xGCnhAkim4';
             document.getElementById('videoContent').innerHTML = `
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/${vID}?autoplay=1" allowfullscreen allow="autoplay"></iframe>
+                    <iframe src="https://www.youtube.com/embed/${vID}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>`;
         }
 
-        function openChat() {
-            const botBtn = document.getElementById('chatbase-bubble-button');
-            if(botBtn) botBtn.click();
-        }
-
-        // Keep video loaded on refresh if unlocked
-        window.onload = () => {
-            if(document.body.classList.contains('unlocked')) loadVideo();
-        };
+        // Allow Enter key to submit password
+        document.addEventListener('DOMContentLoaded', function() {
+            const accessKeyInput = document.getElementById('accessKey');
+            if (accessKeyInput) {
+                accessKeyInput.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        checkAccess();
+                    }
+                });
+            }
+        });
     </script>
 
     <script>
-    (function(){
-        if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-            window.chatbase = (...arguments) => {
-                if(!window.chatbase.q){ window.chatbase.q = [] }
-                window.chatbase.q.push(arguments)
-            };
-            window.chatbase = new Proxy(window.chatbase, {
-                get(target, prop){
-                    if(prop === "q"){ return target.q }
-                    return (...args) => target(prop, ...args)
-                }
-            })
-        }
-        const onLoad = function(){
-            const script = document.createElement("script");
-            script.src = "https://www.chatbase.co/embed.min.js";
-            script.id = "3tbWTrGVbphdNO8-14Q9z";
-            script.domain = "www.chatbase.co";
-            document.body.appendChild(script);
-        };
-        if(document.readyState === "complete"){ onLoad() }
-        else { window.addEventListener("load", onLoad) }
-    })();
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="3tbWTrGVbphdNO8-14Q9z";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
-</body>
+    </body>
 </html>
