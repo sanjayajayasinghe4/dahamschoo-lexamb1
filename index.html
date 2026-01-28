@@ -6,6 +6,7 @@
     <title>Daham Pasal Exam Booster - Preview</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
     <style>
+        /* ඔයාගේ මුල්ම CSS ඔක්කොම මෙතන තියෙනවා */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', sans-serif; 
@@ -18,7 +19,6 @@
                 radial-gradient(circle at 80% 80%, rgba(255, 100, 0, 0.05) 0%, transparent 50%);
         }
         
-        /* Login UI */
         #loginOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.95); display: flex;
@@ -76,19 +76,7 @@
             margin-bottom: 15px; 
             text-align: center; 
             font-size: 1.1em;
-            box-shadow: 
-                0 0 10px rgba(255, 165, 0, 0.3),
-                inset 0 0 10px rgba(255, 165, 0, 0.1);
-        }
-        .input-group input:focus {
-            outline: none;
-            border-color: #ffcc00;
-            box-shadow: 
-                0 0 20px rgba(255, 204, 0, 0.6),
-                inset 0 0 15px rgba(255, 204, 0, 0.2);
-        }
-        .input-group input::placeholder {
-            color: rgba(255, 204, 0, 0.5);
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.3), inset 0 0 10px rgba(255, 165, 0, 0.1);
         }
         .login-btn {
             width: 100%; 
@@ -102,19 +90,9 @@
             transition: 0.3s;
             font-size: 1em;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-            box-shadow: 
-                0 0 20px rgba(255, 165, 0, 0.5),
-                0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        .login-btn:hover {
-            background: linear-gradient(135deg, #ffcc00, #ffa500);
-            transform: translateY(-2px);
-            box-shadow: 
-                0 0 30px rgba(255, 204, 0, 0.8),
-                0 10px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Main Content UI */
         #mainContent { 
             display: none; 
             max-width: 1000px; 
@@ -133,15 +111,8 @@
             color: #ffcc00; 
             font-size: 2.2em; 
             font-family: 'Poppins', sans-serif;
-            text-shadow: 
-                0 0 10px rgba(255, 204, 0, 0.8),
-                0 0 20px rgba(255, 204, 0, 0.5),
-                0 0 30px rgba(255, 204, 0, 0.3);
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
             animation: textGlow 2s ease-in-out infinite alternate;
-        }
-        @keyframes textGlow {
-            from { text-shadow: 0 0 10px rgba(255, 204, 0, 0.8), 0 0 20px rgba(255, 204, 0, 0.5), 0 0 30px rgba(255, 204, 0, 0.3); }
-            to { text-shadow: 0 0 15px rgba(255, 204, 0, 1), 0 0 30px rgba(255, 204, 0, 0.7), 0 0 45px rgba(255, 204, 0, 0.5); }
         }
 
         .video-container { 
@@ -150,171 +121,44 @@
             border-radius: 25px; 
             margin: 20px 0; 
             border: 2px solid #ffa500;
-            box-shadow: 
-                0 0 20px rgba(255, 165, 0, 0.4),
-                inset 0 0 20px rgba(255, 165, 0, 0.05);
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
         }
         .video-wrapper { 
-            position: relative; 
-            padding-bottom: 56.25%; 
-            height: 0; 
-            overflow: hidden; 
-            border-radius: 15px;
-            border: 1px solid rgba(255, 165, 0, 0.3);
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px;
         }
-        .video-wrapper iframe { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            border: none; 
-        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         
         .action-area { text-align: center; margin: 30px 0; }
         .download-btn {
-            display: inline-flex; 
-            align-items: center; 
-            gap: 10px;
+            display: inline-flex; align-items: center; gap: 10px;
             background: linear-gradient(135deg, #ff8c00, #ff6500); 
-            color: #000; 
-            padding: 18px 35px; 
-            border-radius: 15px; 
-            text-decoration: none; 
-            font-weight: 800;
-            transition: 0.3s;
-            box-shadow: 
-                0 0 20px rgba(255, 140, 0, 0.5),
-                0 5px 15px rgba(0, 0, 0, 0.3);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-        }
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 0 30px rgba(255, 140, 0, 0.8),
-                0 10px 25px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(135deg, #ffa500, #ff8c00);
+            color: #000; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 800;
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
         }
 
-        /* Next Lessons Grid */
-        .next-lessons-title { 
-            color: #ffa500; 
-            margin: 40px 0 20px 0; 
-            font-family: 'Poppins', sans-serif; 
-            border-left: 4px solid #ffa500; 
-            padding-left: 15px;
-            text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
-        }
         .lessons-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 20px; 
-            margin-bottom: 40px; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; 
         }
         .lesson-card { 
-            background: rgba(10, 10, 10, 0.8); 
-            border-radius: 15px; 
-            overflow: hidden; 
-            border: 2px solid rgba(255, 165, 0, 0.3); 
-            transition: 0.3s; 
-            cursor: pointer; 
-            text-decoration: none; 
-            display: block;
+            background: rgba(10, 10, 10, 0.8); border-radius: 15px; overflow: hidden; border: 2px solid rgba(255, 165, 0, 0.3); transition: 0.3s; 
+            text-decoration: none; display: block;
         }
-        .lesson-card:hover { 
-            transform: translateY(-5px); 
-            border-color: #ffa500; 
-            box-shadow: 
-                0 0 25px rgba(255, 165, 0, 0.5),
-                0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        .lesson-thumb { 
-            width: 100%; 
-            aspect-ratio: 16/9; 
-            background-size: cover; 
-            background-position: center;
-            position: relative;
-        }
-        .lesson-thumb::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(255, 165, 0, 0.1) 100%);
-        }
+        .lesson-card:hover { transform: translateY(-5px); border-color: #ffa500; }
+        .lesson-thumb { width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; }
         .lesson-info { padding: 15px; }
-        .lesson-info h4 { 
-            color: #ffcc00; 
-            font-size: 0.95em; 
-            margin: 0;
-            text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
-        }
 
-        .support-box { 
-            background: rgba(10, 10, 10, 0.8); 
-            padding: 25px; 
-            border-radius: 20px; 
-            text-align: center; 
-            border: 2px solid #ff8c00; 
-            margin: 20px 0;
-            box-shadow: 
-                0 0 20px rgba(255, 140, 0, 0.3),
-                inset 0 0 20px rgba(255, 140, 0, 0.05);
-        }
-        .support-box p:last-child {
-            color: #ffa500;
-            text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
-            font-weight: 700;
-        }
-        
-        /* Normal Credits Section */
         .credits-section { 
-            background: rgba(30, 30, 30, 0.5); 
-            padding: 15px; 
-            border-radius: 15px; 
-            text-align: center; 
-            border: 1px solid #333; 
-            margin: 30px 0;
-        }
-        .credits-section h3 { 
-            color: #888; 
-            font-size: 1.1em; 
-            margin: 5px 0;
-            text-shadow: none;
-            font-weight: 600;
-        }
-        .credits-section span {
-            color: #666;
-        }
-        
-        footer { 
-            text-align: center; 
-            color: rgba(255, 165, 0, 0.4); 
-            padding: 30px 0; 
-            font-size: 0.8em;
-            text-shadow: 0 0 5px rgba(255, 165, 0, 0.3);
+            background: rgba(30, 30, 30, 0.5); padding: 15px; border-radius: 15px; text-align: center; border: 1px solid #333; margin: 30px 0;
         }
 
-        /* Responsive Design */
+        /* බොට්ව හංගන්න අලුතින් එක්කළ CSS */
+        #chatbase-bubble-button, #chatbase-bubble-window {
+            display: none !important;
+        }
+
         @media (max-width: 768px) {
             header h1 { font-size: 1.6em; }
-            .login-box { padding: 30px 20px; }
             .lessons-grid { grid-template-columns: 1fr; }
-        }
-
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #ffcc00, #ff8c00);
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
         }
     </style>
 </head>
@@ -350,7 +194,7 @@
             </a>
         </div>
 
-        <h3 class="next-lessons-title">ඊළඟ පාඩම් (Suggested)</h3>
+        <h3 style="color:#ffa500; margin: 40px 0 20px 0; border-left: 4px solid #ffa500; padding-left: 15px;">ඊළඟ පාඩම් (Suggested)</h3>
         <div class="lessons-grid">
             <a href="?v=7xGCnhAkim4" class="lesson-card">
                 <div class="lesson-thumb" style="background-image: url('https://img.youtube.com/vi/7xGCnhAkim4/mqdefault.jpg');"></div>
@@ -362,18 +206,41 @@
             </a>
         </div>
 
-        <div class="support-box">
-            <p style="color:#888;">සහය සඳහා:</p>
-            <p>dmpasalsupport@gmail.com</p>
-        </div>
-
         <div class="credits-section">
-            <span style="font-size: 0.7em; text-transform: uppercase;">Special Thanks</span>
-            <h3>MUBRA WEBWORKS</h3>
+            <span style="font-size: 0.7em; text-transform: uppercase; color:#888;">Special Thanks</span>
+            <h3 style="color:#888;">MUBRA WEBWORKS</h3>
         </div>
 
-        <footer>© 2024 Daham Pasal Support Unit.</footer>
+        <footer style="text-align: center; color: rgba(255, 165, 0, 0.4); padding: 30px 0;">© 2024 Daham Pasal Support Unit.</footer>
     </div>
+
+    <script>
+    (function(){
+        if(!window.chatbase||window.chatbase("getState")!=="initialized"){
+            window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};
+            window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})
+        }
+        const onLoad=function(){
+            const script=document.createElement("script");
+            script.src="https://www.chatbase.co/embed.min.js";
+            script.id="3tbWTrGVbphdNO8-14Q9z";
+            script.domain="www.chatbase.co";
+            
+            // බොට් Load වුණාට පස්සෙත් Hide එකේම තියන්න මේක ඕනේ
+            script.onload = function() {
+                setTimeout(() => {
+                    const btn = document.getElementById('chatbase-bubble-button');
+                    if(btn && document.getElementById('mainContent').style.display !== 'block') {
+                        btn.style.setProperty('display', 'none', 'important');
+                    }
+                }, 500);
+            };
+            
+            document.body.appendChild(script)
+        };
+        if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}
+    })();
+    </script>
 
     <script>
         const secretKey = 'Daham2024';
@@ -383,6 +250,13 @@
             if (inputValue === secretKey) {
                 document.getElementById('loginOverlay').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
+                
+                // Password එක හරි නම් විතරක් බොට්ව පෙන්වන්න
+                const botBtn = document.getElementById('chatbase-bubble-button');
+                if(botBtn) {
+                    botBtn.style.setProperty('display', 'block', 'important');
+                }
+                
                 loadVideo();
             } else {
                 alert('වැරදි මුරපදයක්!');
@@ -400,7 +274,6 @@
                 </div>`;
         }
 
-        // Allow Enter key to submit password
         document.addEventListener('DOMContentLoaded', function() {
             const accessKeyInput = document.getElementById('accessKey');
             if (accessKeyInput) {
@@ -412,9 +285,5 @@
             }
         });
     </script>
-
-    <script>
-    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="3tbWTrGVbphdNO8-14Q9z";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-    </script>
-    </body>
+</body>
 </html>
