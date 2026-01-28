@@ -22,7 +22,7 @@
         /* --- Login UI --- */
         #loginOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95); display: flex;
+            background: rgba(0, 0, 0, 0.98); display: flex;
             justify-content: center; align-items: center; z-index: 9999;
         }
         .login-box {
@@ -71,18 +71,31 @@
         }
         .download-btn:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(255, 165, 0, 0.8); }
 
-        .lessons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .lesson-card { background: rgba(10, 10, 10, 0.8); border-radius: 15px; overflow: hidden; border: 2px solid rgba(255, 165, 0, 0.3); text-decoration: none; }
+        /* Lessons List */
+        .lessons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
+        .lesson-card { background: rgba(15, 15, 15, 0.9); border-radius: 15px; overflow: hidden; border: 2px solid rgba(255, 165, 0, 0.2); text-decoration: none; transition: 0.3s; }
+        .lesson-card:hover { border-color: #ffa500; transform: scale(1.02); }
         .lesson-thumb { width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; }
 
-        /* --- Chatbot Styling & Visibility Control --- */
-        /* මුලින්ම හැම Chatbase element එකක්ම සම්පූර්ණයෙන් හංගන්න */
+        /* --- New Sections (Email & Thanks) --- */
+        .info-card {
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.08), rgba(255, 140, 0, 0.03));
+            border: 2px solid rgba(255, 165, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.1);
+        }
+        .email-link { color: #ff8c00; font-size: 1.2em; font-weight: 700; text-decoration: none; font-family: 'Poppins', sans-serif; transition: 0.3s; }
+        .email-link:hover { text-shadow: 0 0 10px #ff8c00; }
+        .thanks-title { color: #ff8c00; font-size: 1.5em; font-weight: 800; font-family: 'Poppins', sans-serif; text-shadow: 0 0 12px rgba(255, 140, 0, 0.4); margin: 5px 0; }
+
+        /* --- Chatbot Hide/Show --- */
         #chatbase-bubble-button, #chatbase-bubble-window, [id^="chatbase"] {
             display: none !important;
             visibility: hidden !important;
         }
-
-        /* Unlock කළ පසු පෙන්වීමට අවශ්‍ය CSS */
         body.unlocked #chatbase-bubble-button {
             display: block !important;
             visibility: visible !important;
@@ -90,28 +103,11 @@
             bottom: 20px !important;
             right: 20px !important;
             z-index: 9998 !important;
-            animation: bounceIn 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) !important;
         }
 
-        @keyframes bounceIn {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
-        }
-
-        /* Mobile Responsive adjustments */
         @media (max-width: 768px) {
-            #chatbase-bubble-window {
-                width: 90% !important;
-                right: 5% !important;
-                bottom: 90px !important;
-                height: 60vh !important;
-            }
-            #chatbase-bubble-button {
-                bottom: 15px !important;
-                right: 15px !important;
-                width: 55px !important;
-                height: 55px !important;
-            }
+            header h1 { font-size: 1.8em; }
+            #chatbase-bubble-window { width: 90% !important; right: 5% !important; bottom: 85px !important; height: 60vh !important; }
         }
     </style>
 </head>
@@ -122,7 +118,7 @@
             <div style="font-size: 3em;">🛡️</div>
             <h2 style="color: #ffa500; margin-bottom: 20px; font-family: 'Poppins', sans-serif;">ප්‍රවේශය අවශ්‍යයි</h2>
             <div style="background: rgba(255, 50, 0, 0.1); border: 1px solid #ff4500; padding: 15px; border-radius: 10px; margin-bottom: 25px; text-align: left;">
-                <p style="color: #ff6347; font-size: 0.9em; font-weight: 600;">⚠️ අවවාදයයි: මෙම දත්ත අවසරයකින් තොරව වාණිජ කටයුතු සඳහා යොදා ගැනීම තහනම්ය.</p>
+                <p style="color: #ff6347; font-size: 0.85em; font-weight: 600;">⚠️ අවවාදයයි: මෙම දත්ත අවසරයකින් තොරව වාණිජ කටයුතු සඳහා යොදා ගැනීම තහනම්ය.</p>
             </div>
             <div class="input-group">
                 <input type="password" id="accessKey" placeholder="Password එක ගහන්න" autocomplete="off">
@@ -158,9 +154,19 @@
             </a>
         </div>
 
-        <footer style="text-align: center; color: rgba(255, 165, 0, 0.4); padding: 30px 0;">
-            <p>Support: dmpasalsupport@gmail.com</p>
-            <p style="margin-top:10px; font-size: 0.8em;">Powered by MUBRAWEBWORKS</p>
+        <div class="info-card">
+            <p style="color: #ffa500; font-size: 0.9em; font-weight: 500; margin-bottom: 8px;">සබඳතා සඳහා:</p>
+            <a href="mailto:dmpasalsupport@gmail.com" class="email-link">dmpasalsupport@gmail.com</a>
+        </div>
+
+        <div class="info-card">
+            <p style="color: #ffa500; font-size: 0.9em; font-weight: 500; margin-bottom: 5px;">Special Thanks</p>
+            <h3 class="thanks-title">MUBRAWEBWORKS</h3>
+            <p style="color: rgba(255, 165, 0, 0.5); font-size: 0.75em;">Professional Web Development • Custom Solutions • Modern Design</p>
+        </div>
+
+        <footer style="text-align: center; color: rgba(255, 165, 0, 0.3); padding: 40px 0; font-size: 0.8em; letter-spacing: 1px;">
+            © 2024 DAHAM PASAL SUPPORT UNIT. ALL RIGHTS RESERVED.
         </footer>
     </div>
 
@@ -170,28 +176,24 @@
         function checkAccess() {
             const inputValue = document.getElementById('accessKey').value;
             if (inputValue === secretKey) {
-                // UI Unlock කිරීම
                 document.getElementById('loginOverlay').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
                 document.body.classList.remove('locked');
                 document.body.classList.add('unlocked');
                 
                 loadVideo();
-                
-                // Chatbot එක පෙන්වීමට අණ කිරීම
-                setTimeout(showChatbotManually, 1000);
+                setTimeout(showBot, 1000);
             } else {
                 alert('වැරදි මුරපදයක්!');
                 document.getElementById('accessKey').value = '';
             }
         }
 
-        function showChatbotManually() {
-            const botBtn = document.getElementById('chatbase-bubble-button');
-            if (botBtn) {
-                botBtn.style.setProperty('display', 'block', 'important');
-                botBtn.style.setProperty('visibility', 'visible', 'important');
-                botBtn.style.setProperty('opacity', '1', 'important');
+        function showBot() {
+            const btn = document.getElementById('chatbase-bubble-button');
+            if(btn) {
+                btn.style.setProperty('display', 'block', 'important');
+                btn.style.setProperty('visibility', 'visible', 'important');
             }
         }
 
@@ -204,7 +206,6 @@
                 </div>`;
         }
 
-        // Enter Key Support
         document.getElementById('accessKey').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') checkAccess();
         });
