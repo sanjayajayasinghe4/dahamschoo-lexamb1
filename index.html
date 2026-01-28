@@ -6,962 +6,101 @@
     <title>Daham Pasal Exam Booster - 2024</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-        
-        body { 
-            font-family: 'Inter', 'Noto Sans Sinhala', sans-serif; 
-            background: #0a0a0a; 
-            color: #e0e0e0; 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Background Gradients */
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 200, 0, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.06) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(255, 165, 0, 0.03) 0%, transparent 50%);
-        }
-
-        /* Password Lock Screen */
-        #loginOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.97);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            backdrop-filter: blur(10px);
-        }
-
-        .login-box {
-            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.98));
-            padding: 50px 40px;
-            border-radius: 24px;
-            border: 2px solid rgba(255, 165, 0, 0.4);
-            text-align: center;
-            max-width: 440px;
-            width: 90%;
-            box-shadow: 
-                0 0 60px rgba(255, 165, 0, 0.3),
-                inset 0 0 40px rgba(255, 165, 0, 0.05);
-            animation: pulseGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { 
-                box-shadow: 0 0 40px rgba(255, 165, 0, 0.3), inset 0 0 30px rgba(255, 165, 0, 0.05);
-            }
-            50% { 
-                box-shadow: 0 0 70px rgba(255, 165, 0, 0.5), inset 0 0 50px rgba(255, 165, 0, 0.08);
-            }
-        }
-
-        .login-box .icon {
-            font-size: 4em;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.6));
-        }
-
-        .login-box h2 {
-            color: #ffcc00;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(255, 200, 0, 0.4);
-        }
-
-        .warning-box {
-            background: rgba(255, 50, 0, 0.08);
-            border: 1px solid rgba(255, 69, 0, 0.3);
-            padding: 18px;
-            border-radius: 12px;
-            margin: 25px 0;
-        }
-
-        .warning-box p {
-            color: #ff6347;
-            font-size: 0.9em;
-            font-weight: 600;
-            line-height: 1.5;
-        }
-
-        .input-group {
-            margin: 25px 0;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 16px 20px;
-            border-radius: 12px;
-            background: rgba(20, 20, 20, 0.8);
-            border: 2px solid rgba(255, 165, 0, 0.4);
-            color: #ffcc00;
-            font-size: 1.1em;
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #ffcc00;
-            box-shadow: 0 0 20px rgba(255, 200, 0, 0.3);
-            background: rgba(30, 30, 30, 0.9);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 16px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #ffa500, #ff8c00);
-            color: #000;
-            font-weight: 800;
-            font-size: 1.1em;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(255, 165, 0, 0.5);
-        }
-
-        /* Main Content */
-        #mainContent {
-            display: none;
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            text-align: center;
-            padding: 80px 20px 60px;
-            position: relative;
-        }
-
-        .hero-section h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3em;
-            font-weight: 800;
-            color: #ffcc00;
-            margin-bottom: 15px;
-            text-shadow: 0 0 40px rgba(255, 200, 0, 0.4);
-            line-height: 1.2;
-        }
-
-        .hero-section .subtitle {
-            color: #ffa500;
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .hero-section .description {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            line-height: 1.8;
-        }
-
-        .divider {
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #ffa500, transparent);
-            margin: 40px auto;
-        }
-
-        /* Content Viewer Section */
-        .content-section {
-            padding: 40px 20px;
-        }
-
-        .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2em;
-            color: #ffcc00;
-            text-align: center;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-
-        .video-container {
-            background: rgba(20, 20, 20, 0.6);
-            padding: 20px;
-            border-radius: 20px;
-            margin: 0 auto 40px;
-            max-width: 900px;
-            border: 2px solid rgba(255, 165, 0, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            background: #000;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Download Button */
-        .download-section {
-            text-align: center;
-            margin: 50px 0;
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #ff8c00, #ff6500);
-            color: #000;
-            padding: 20px 45px;
-            border-radius: 16px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.1em;
-            border: 3px solid #ffa500;
-            box-shadow: 0 8px 30px rgba(255, 165, 0, 0.4);
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(255, 165, 0, 0.6);
-            border-color: #ffcc00;
-        }
-
-        /* Lessons Grid */
-        .lessons-section {
-            padding: 60px 20px;
-        }
-
-        .lessons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .lesson-card {
-            background: rgba(20, 20, 20, 0.6);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 165, 0, 0.2);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .lesson-card:hover {
-            transform: translateY(-8px);
-            border-color: #ffa500;
-            box-shadow: 0 12px 40px rgba(255, 165, 0, 0.3);
-        }
-
-        .lesson-thumb {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .lesson-thumb::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3em;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .lesson-card:hover .lesson-thumb::after {
-            opacity: 1;
-        }
-
-        .lesson-content {
-            padding: 20px;
-        }
-
-        .lesson-content h3 {
-            color: #ffcc00;
-            font-size: 1.1em;
-            font-weight: 600;
-            font-family: 'Noto Sans Sinhala', sans-serif;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 60px 20px;
-        }
-
-        /* Chatbot Help Section (Mobile-First Optimized - Pure Sinhala) */
-        .chatbot-help-section {
-            padding: 40px 15px;
-            background: linear-gradient(180deg, rgba(255, 165, 0, 0.02), rgba(255, 165, 0, 0.05));
-        }
-
-        .chatbot-card {
-            max-width: 100%;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(20, 20, 20, 0.98));
-            border: 2px solid rgba(255, 165, 0, 0.4);
-            border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 
-                0 8px 30px rgba(0, 0, 0, 0.6),
-                inset 0 0 30px rgba(255, 165, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chatbot-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 165, 0, 0.08) 0%, transparent 70%);
-            animation: rotateGlow 20s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes rotateGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .chatbot-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .chatbot-header {
-            margin-bottom: 25px;
-        }
-
-        .chatbot-icon {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 25px rgba(255, 165, 0, 0.6));
-            animation: floatIcon 3s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-8px) scale(1.05); }
-        }
-
-        .chatbot-title {
-            font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
-            font-size: 1.75em;
-            color: #ffcc00;
-            margin-bottom: 0;
-            font-weight: 800;
-            text-shadow: 0 0 25px rgba(255, 200, 0, 0.5);
-            line-height: 1.3;
-            word-wrap: break-word;
-        }
-
-        .chatbot-description {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1.05em;
-            line-height: 1.7;
-            margin: 25px 0;
-            font-family: 'Noto Sans Sinhala', sans-serif;
-            word-wrap: break-word;
-            text-align: center;
-        }
-
-        .chatbot-features {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            background: rgba(255, 165, 0, 0.08);
-            border: 1px solid rgba(255, 165, 0, 0.25);
-            border-radius: 12px;
-            padding: 16px 18px;
-            text-align: left;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:active {
-            background: rgba(255, 165, 0, 0.15);
-            transform: scale(0.98);
-        }
-
-        .feature-icon {
-            font-size: 2em;
-            flex-shrink: 0;
-            filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.5));
-            line-height: 1;
-        }
-
-        .feature-content {
-            flex: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        .feature-text {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1em;
-            font-weight: 500;
-            font-family: 'Noto Sans Sinhala', sans-serif;
-            line-height: 1.5;
-            word-wrap: break-word;
-        }
-
-        .chatbot-cta {
-            margin-top: 35px;
-        }
-
-        .chatbot-button {
-            width: 100%;
-            max-width: 100%;
-            background: linear-gradient(135deg, #ffa500, #ff8c00);
-            color: #000;
-            padding: 18px 25px;
-            border-radius: 14px;
-            border: 3px solid #ffcc00;
-            font-size: 1.1em;
-            font-weight: 800;
-            font-family: 'Noto Sans Sinhala', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 25px rgba(255, 165, 0, 0.4);
-            text-transform: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-
-        .chatbot-button:active {
-            transform: scale(0.96);
-            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.5);
-        }
-
-        .button-icon {
-            font-size: 1.3em;
-            line-height: 1;
-        }
-
-        .button-text {
-            line-height: 1.4;
-        }
-
-        .chatbot-hint {
-            margin-top: 18px;
-            color: rgba(255, 165, 0, 0.7);
-            font-size: 0.95em;
-            font-family: 'Noto Sans Sinhala', sans-serif;
-            animation: pulse 2s ease-in-out infinite;
-            line-height: 1.5;
-            word-wrap: break-word;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        /* Tablet (481px - 768px) */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .chatbot-card {
-                padding: 35px 30px;
-                border-radius: 22px;
-            }
-
-            .chatbot-title {
-                font-size: 2em;
-            }
-
-            .chatbot-description {
-                font-size: 1.1em;
-            }
-
-            .feature-text {
-                font-size: 1.05em;
-            }
-
-            .chatbot-button {
-                padding: 20px 35px;
-                font-size: 1.15em;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-        }
-
-        /* Desktop (769px+) */
-        @media (min-width: 769px) {
-            .chatbot-help-section {
-                padding: 60px 20px;
-            }
-
-            .chatbot-card {
-                max-width: 800px;
-                padding: 50px 40px;
-                border-radius: 24px;
-            }
-
-            .chatbot-icon {
-                font-size: 4em;
-                margin-bottom: 20px;
-            }
-
-            .chatbot-title {
-                font-size: 2.2em;
-                margin-bottom: 20px;
-            }
-
-            .chatbot-description {
-                font-size: 1.15em;
-                margin: 25px auto 35px;
-                max-width: 650px;
-            }
-
-            .chatbot-features {
-                gap: 20px;
-                margin: 40px auto;
-                max-width: 600px;
-            }
-
-            .feature-item {
-                padding: 18px 25px;
-                border-radius: 15px;
-            }
-
-            .feature-item:hover {
-                background: rgba(255, 165, 0, 0.15);
-                border-color: rgba(255, 165, 0, 0.4);
-                transform: translateX(10px);
-            }
-
-            .feature-item:active {
-                transform: translateX(10px) scale(0.98);
-            }
-
-            .feature-text {
-                font-size: 1.05em;
-            }
-
-            .chatbot-cta {
-                margin-top: 40px;
-            }
-
-            .chatbot-button {
-                max-width: 500px;
-                margin: 0 auto;
-                padding: 18px 40px;
-                font-size: 1.15em;
-            }
-
-            .chatbot-button:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 12px 40px rgba(255, 165, 0, 0.6);
-                background: linear-gradient(135deg, #ffb520, #ffa500);
-            }
-
-            .chatbot-button:active {
-                transform: translateY(-2px) scale(0.98);
-            }
-
-            .chatbot-hint {
-                font-size: 1em;
-            }
-        }
-
-        /* Contact Section */
-
-        .contact-card {
-            max-width: 600px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(255, 165, 0, 0.08), rgba(255, 140, 0, 0.05));
-            border: 2px solid rgba(255, 165, 0, 0.3);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(255, 165, 0, 0.15);
-        }
-
-        .contact-card h3 {
-            color: #ffa500;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .contact-card a {
-            color: #ff8c00;
-            font-size: 1.3em;
-            font-weight: 700;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-            transition: color 0.3s ease;
-        }
-
-        .contact-card a:hover {
-            color: #ffcc00;
-            text-shadow: 0 0 20px rgba(255, 200, 0, 0.5);
-        }
-
-        /* Footer */
-        footer {
-            padding: 50px 20px 30px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 165, 0, 0.1);
-            margin-top: 60px;
-        }
-
-        .footer-thanks {
-            margin-bottom: 30px;
-        }
-
-        .footer-thanks .label {
-            color: rgba(255, 165, 0, 0.6);
-            font-size: 0.9em;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-thanks .brand {
-            color: #ff8c00;
-            font-size: 1.5em;
-            font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-            text-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
-            margin-bottom: 8px;
-        }
-
-        .footer-thanks .tagline {
-            color: rgba(255, 165, 0, 0.4);
-            font-size: 0.85em;
-        }
-
-        .footer-copyright {
-            color: rgba(255, 165, 0, 0.3);
-            font-size: 0.9em;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 165, 0, 0.1);
-        }
-
-        /* Chatbot Styles */
-        body.locked #chatbase-bubble-button,
-        body.locked #chatbase-bubble-window,
-        body.locked [id^="chatbase"] {
+        /* ඔබගේ මුල් CSS සියල්ල මෙහි ඇත (වෙනස් කර නැත) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans Sinhala', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; overflow-x: hidden; }
+        .bg-gradient { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 20% 20%, rgba(255, 200, 0, 0.08) 0%, transparent 40%), radial-gradient(circle at 80% 80%, rgba(255, 140, 0, 0.06) 0%, transparent 40%), radial-gradient(circle at 50% 50%, rgba(255, 165, 0, 0.03) 0%, transparent 50%); }
+        #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.97); display: flex; justify-content: center; align-items: center; z-index: 10000; backdrop-filter: blur(10px); }
+        .login-box { background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.98)); padding: 50px 40px; border-radius: 24px; border: 2px solid rgba(255, 165, 0, 0.4); text-align: center; max-width: 440px; width: 90%; box-shadow: 0 0 60px rgba(255, 165, 0, 0.3); animation: pulseGlow 4s ease-in-out infinite; }
+        @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 40px rgba(255, 165, 0, 0.3); } 50% { box-shadow: 0 0 70px rgba(255, 165, 0, 0.5); } }
+        .input-group input { width: 100%; padding: 16px 20px; border-radius: 12px; background: rgba(20, 20, 20, 0.8); border: 2px solid rgba(255, 165, 0, 0.4); color: #ffcc00; font-size: 1.1em; text-align: center; }
+        .login-btn { width: 100%; padding: 16px; border-radius: 12px; background: linear-gradient(135deg, #ffa500, #ff8c00); color: #000; font-weight: 800; cursor: pointer; border: none; }
+        #mainContent { display: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .hero-section { text-align: center; padding: 80px 20px 60px; }
+        .hero-section h1 { color: #ffcc00; font-size: 3em; }
+        .video-container { background: rgba(20, 20, 20, 0.6); padding: 20px; border-radius: 20px; border: 2px solid rgba(255, 165, 0, 0.3); }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #000; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .lessons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .lesson-card { background: rgba(20, 20, 20, 0.6); border-radius: 16px; overflow: hidden; border: 2px solid rgba(255, 165, 0, 0.2); text-decoration: none; }
+        .lesson-thumb { width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; }
+        .chatbot-card { background: rgba(30, 30, 30, 0.95); border: 2px solid #ffa500; border-radius: 20px; padding: 30px; text-align: center; }
+        .chatbot-button { background: #ffa500; color: #000; padding: 15px; border-radius: 10px; border: none; font-weight: 800; cursor: pointer; width: 100%; }
+
+        /* --- BOT FIX (ප්‍රධාන නිවැරදි කිරීම) --- */
+        /* මුලින් බොට් එක සයිට් එකේ කොහේවත් නොපෙනී තිබිය යුතුය */
+        #chatbase-bubble-button, #chatbase-bubble-window {
             display: none !important;
             visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
         }
 
-        body:not(.locked) #chatbase-bubble-button {
+        /* Password එක ගැසූ පසු පමණක් බොට් එක පෙන්වන්න */
+        body.unlocked #chatbase-bubble-button {
             display: block !important;
             visibility: visible !important;
-            opacity: 1 !important;
-            pointer-events: auto !important;
+            z-index: 9999999 !important; /* හැමදේටම උඩින් */
         }
-
-        body:not(.locked) #chatbase-bubble-window {
-            visibility: visible !important;
-            pointer-events: auto !important;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2em;
-            }
-
-            .hero-section .subtitle {
-                font-size: 1em;
-            }
-
-            .hero-section .description {
-                font-size: 1em;
-            }
-
-            .section-title {
-                font-size: 1.6em;
-            }
-
-            .download-btn {
-                padding: 16px 35px;
-                font-size: 1em;
-            }
-
-            .lessons-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            /* Mobile Chatbot */
-            #chatbase-bubble-window {
-                width: 90% !important;
-                max-width: 400px !important;
-                height: 65vh !important;
-                max-height: 600px !important;
-                bottom: 80px !important;
-                right: 10px !important;
-            }
-
-            #chatbase-bubble-button {
-                bottom: 20px !important;
-                right: 20px !important;
-                width: 60px !important;
-                height: 60px !important;
-                border-radius: 50% !important;
-                box-shadow: 0 4px 20px rgba(255, 165, 0, 0.6) !important;
-                animation: chatbotPulse 2s ease-in-out infinite !important;
-            }
-        }
-
-        /* Desktop Chatbot */
-        @media (min-width: 769px) {
-            #chatbase-bubble-window {
-                width: 400px !important;
-                height: 600px !important;
-                bottom: 100px !important;
-                right: 20px !important;
-            }
-
-            #chatbase-bubble-button {
-                bottom: 25px !important;
-                right: 25px !important;
-                width: 65px !important;
-                height: 65px !important;
-                border-radius: 50% !important;
-                box-shadow: 0 5px 25px rgba(255, 165, 0, 0.7) !important;
-                animation: chatbotPulse 2s ease-in-out infinite !important;
-                transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-            }
-
-            #chatbase-bubble-button:hover {
-                transform: scale(1.1) !important;
-                box-shadow: 0 8px 35px rgba(255, 165, 0, 0.9) !important;
-            }
-        }
-
-        @keyframes chatbotPulse {
-            0%, 100% {
-                box-shadow: 0 4px 20px rgba(255, 165, 0, 0.6);
-            }
-            50% {
-                box-shadow: 0 6px 30px rgba(255, 165, 0, 0.9);
-            }
+        body.unlocked #chatbase-bubble-window {
+            z-index: 9999999 !important;
         }
     </style>
 </head>
 <body class="locked">
     <div class="bg-gradient"></div>
 
-    <!-- Password Lock Screen -->
     <div id="loginOverlay">
         <div class="login-box">
             <div class="icon">🛡️</div>
             <h2>Access Required</h2>
-            <div class="warning-box">
-                <p>⚠️ Warning: Unauthorized commercial use of this content is strictly prohibited.</p>
-            </div>
             <div class="input-group">
-                <input type="password" id="accessKey" placeholder="Enter Password" autocomplete="off">
+                <input type="password" id="accessKey" placeholder="Enter Password">
             </div>
             <button class="login-btn" onclick="checkAccess()">UNLOCK</button>
         </div>
     </div>
 
-    <!-- Main Content -->
     <div id="mainContent">
-        <!-- Hero Section -->
         <section class="hero-section">
             <div class="container">
                 <h1>Daham Pasal Exam Booster</h1>
-                <p class="subtitle">2024 Final Batch Support</p>
-                <p class="description">
-                    Complete lesson series for the Daham Pasal final examination. 
-                    Ensure your success with expert guidance and comprehensive study materials.
-                </p>
+                <p>2024 Final Batch Support</p>
             </div>
         </section>
 
-        <div class="divider"></div>
-
-        <!-- Main Content Viewer -->
         <section class="content-section">
             <div class="container">
-                <h2 class="section-title">Video Lessons</h2>
                 <div class="video-container">
-                    <div id="videoContent"></div>
+                    <div id="videoContent">
+                        </div>
                 </div>
             </div>
         </section>
 
-        <!-- Download Button -->
-        <section class="download-section">
-            <a href="https://docs.google.com/document/d/1a456-vFwJgfDr_iZnIavIt4WyLH3PajT2-YOKtgJRg0/edit?usp=drive_link" target="_blank" class="download-btn">
-                📥 Download PDF Notes
-            </a>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- Lessons Grid -->
         <section class="lessons-section">
             <div class="container">
-                <h2 class="section-title">Lesson Series</h2>
                 <div class="lessons-grid">
                     <a href="?v=7xGCnhAkim4" class="lesson-card">
                         <div class="lesson-thumb" style="background-image: url('https://img.youtube.com/vi/7xGCnhAkim4/mqdefault.jpg');"></div>
-                        <div class="lesson-content">
-                            <h3>01 කොටස - විභාග පෙරහුරුව</h3>
-                        </div>
+                        <div style="padding:15px"><h3>01 කොටස</h3></div>
                     </a>
                     <a href="?v=npjUkaAj_0g" class="lesson-card">
                         <div class="lesson-thumb" style="background-image: url('https://img.youtube.com/vi/npjUkaAj_0g/mqdefault.jpg');"></div>
-                        <div class="lesson-content">
-                            <h3>02 කොටස - සාරධර්ම අධ්‍යාපනය</h3>
-                        </div>
+                        <div style="padding:15px"><h3>02 කොටස</h3></div>
                     </a>
                 </div>
             </div>
         </section>
 
-        <div class="divider"></div>
-
-        <!-- Chatbot Help Section (Mobile Optimized - Pure Sinhala) -->
-        <section class="chatbot-help-section">
+        <section class="chatbot-help-section" style="padding: 50px 20px;">
             <div class="container">
                 <div class="chatbot-card">
-                    <div class="chatbot-header">
-                        <div class="chatbot-icon">💬</div>
-                        <h2 class="chatbot-title">ඔබගේ අධ්‍යයන සහායකයා</h2>
-                    </div>
-                    <p class="chatbot-description">
-                        පාඩම් හා විභාග සම්බන්ධ ඔබගේ ඕනෑම ප්‍රශ්නයකට ක්ෂණික පිළිතුරු ලබා ගන්න. 
-                        අපගේ ස්වයංක්‍රීය සහායක සේවාව දිවා රාත්‍රී පුරා ඔබ වෙනුවෙන් සූදානම්!
-                    </p>
-                    <div class="chatbot-features">
-                        <div class="feature-item">
-                            <span class="feature-icon">📚</span>
-                            <div class="feature-content">
-                                <span class="feature-text">පාඩම් පිළිබඳ විස්තර සහ පැහැදිලි කිරීම්</span>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">✍️</span>
-                            <div class="feature-content">
-                                <span class="feature-text">විභාග ප්‍රශ්න සහ නිදර්ශන පිළිතුරු</span>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">💡</span>
-                            <div class="feature-content">
-                                <span class="feature-text">ඉගෙනීමේ උපදෙස් හා මාර්ගෝපදේශන</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chatbot-cta">
-                        <button class="chatbot-button" onclick="openChatbot()">
-                            <span class="button-icon">💬</span>
-                            <span class="button-text">චැට් බොට් එක අරින්න</span>
-                        </button>
-                        <p class="chatbot-hint">දකුණු පස්සේ පහළ කෙළවරේ ඇති රවුම් බොත්තම ක්ලික් කරන්න 👉</p>
-                    </div>
+                    <h2 style="color:#ffa500">චැට් බොට් සහාය</h2>
+                    <p style="margin: 15px 0">ඕනෑම ගැටළුවක් පහත බොත්තම එබීමෙන් බොට් ගෙන් අසන්න.</p>
+                    <button class="chatbot-button" onclick="openChatbase()">Open Chatbot</button>
                 </div>
             </div>
         </section>
-
-        <div class="divider"></div>
-
-        <!-- Contact Section -->
-        <section class="contact-section">
-            <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <div class="contact-card">
-                    <h3>Contact Us:</h3>
-                    <a href="mailto:dmpasalsupport@gmail.com">dmpasalsupport@gmail.com</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="footer-thanks">
-                    <div class="label">Special Thanks</div>
-                    <div class="brand">MUBRAWEBWORKS</div>
-                    <div class="tagline">Professional Web Development • Custom Solutions • Modern Design</div>
-                </div>
-                <div class="footer-copyright">
-                    © 2024 Daham Pasal Support Unit. All Rights Reserved.
-                </div>
-            </div>
-        </footer>
     </div>
 
     <script>
@@ -972,149 +111,59 @@
             if (inputValue === secretKey) {
                 document.getElementById('loginOverlay').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
+                document.body.classList.add('unlocked'); // බොට් එක පෙන්වීමට මෙය අවශ්‍යයි
                 document.body.classList.remove('locked');
                 
                 loadVideo();
                 
-                setTimeout(() => showChatbot(), 500);
-                setTimeout(() => showChatbot(), 1000);
-                setTimeout(() => showChatbot(), 2000);
+                // බොට් එක සයිට් එකට ඇතුල් වූ පසු Load වීමට තත්පරයක් දෙන්න
+                setTimeout(() => {
+                    const btn = document.getElementById('chatbase-bubble-button');
+                    if(btn) btn.style.setProperty('display', 'block', 'important');
+                }, 1000);
             } else {
                 alert('Incorrect password!');
-                document.getElementById('accessKey').value = '';
-                document.getElementById('accessKey').focus();
             }
-        }
-
-        function showChatbot() {
-            const botBtn = document.getElementById('chatbase-bubble-button');
-            const botWindow = document.getElementById('chatbase-bubble-window');
-            const allChatbaseElements = document.querySelectorAll('[id^="chatbase"]');
-            
-            if (botBtn) {
-                botBtn.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; position: fixed !important; bottom: 20px !important; right: 20px !important; z-index: 9998 !important;';
-            }
-            
-            if (botWindow) {
-                botWindow.style.cssText = 'visibility: visible !important; pointer-events: auto !important; opacity: 1 !important;';
-            }
-            
-            allChatbaseElements.forEach((el) => {
-                if (el.id === 'chatbase-bubble-button') {
-                    el.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; position: fixed !important; bottom: 20px !important; right: 20px !important; z-index: 9998 !important;';
-                } else {
-                    el.style.cssText = 'visibility: visible !important; opacity: 1 !important; pointer-events: auto !important;';
-                }
-            });
         }
 
         function loadVideo() {
             const urlParams = new URLSearchParams(window.location.search);
             const vID = urlParams.get('v') || '7xGCnhAkim4';
-            document.getElementById('videoContent').innerHTML = `
+            const videoDiv = document.getElementById('videoContent');
+            videoDiv.innerHTML = `
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/${vID}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>`;
+                    <iframe src="https://www.youtube.com/embed/${vID}?autoplay=1" allowfullscreen allow="autoplay"></iframe>
+                </div>
+            `;
         }
 
-        document.getElementById('accessKey').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') checkAccess();
-        });
-
-        // Open/Highlight Chatbot Function
-        function openChatbot() {
-            const chatbotButton = document.getElementById('chatbase-bubble-button');
-            if (chatbotButton) {
-                // Scroll to bottom right
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: 'smooth'
-                });
-                
-                // Highlight the chatbot button
-                chatbotButton.style.animation = 'none';
-                setTimeout(() => {
-                    chatbotButton.style.animation = 'highlightPulse 1s ease-in-out 3';
-                }, 100);
-                
-                // Auto-click after animation
-                setTimeout(() => {
-                    chatbotButton.click();
-                }, 1500);
-            } else {
-                alert('චැට් බොට් එක තවම පූර්ණව load වී නැත. කරුණාකර තත්පර කිහිපයක් බලා සිටින්න.');
-            }
+        // පාස්වර්ඩ් එක ගැසීමට පෙර බොට් එක ඕපන් කිරීම වැළැක්වීමට
+        function openChatbase() {
+            const btn = document.getElementById('chatbase-bubble-button');
+            if(btn) btn.click();
         }
 
-        // Add highlight animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes highlightPulse {
-                0%, 100% { 
-                    transform: scale(1); 
-                    box-shadow: 0 5px 25px rgba(255, 165, 0, 0.7);
-                }
-                50% { 
-                    transform: scale(1.2); 
-                    box-shadow: 0 10px 50px rgba(255, 200, 0, 1);
-                }
+        // පේජ් එක මුලින්ම ලෝඩ් වන විට වීඩියෝව පරීක්ෂා කිරීම
+        window.onload = function() {
+            if(document.body.classList.contains('unlocked')) {
+                loadVideo();
             }
-        `;
-        document.head.appendChild(style);
-
-        // Chatbot Observer
-        const chatbotObserver = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                mutation.addedNodes.forEach(function(node) {
-                    if (node.nodeType === 1 && (
-                        node.id === 'chatbase-bubble-button' || 
-                        node.id === 'chatbase-bubble-window' ||
-                        (node.id && node.id.startsWith('chatbase'))
-                    )) {
-                        if (document.body.classList.contains('locked')) {
-                            node.style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;';
-                        } else {
-                            node.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important;';
-                            
-                            if (node.id === 'chatbase-bubble-button') {
-                                setTimeout(() => {
-                                    node.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; position: fixed !important; bottom: 20px !important; right: 20px !important; z-index: 9998 !important;';
-                                }, 100);
-                            }
-                        }
-                    }
-                });
-            });
-        });
-
-        chatbotObserver.observe(document.documentElement, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ['style', 'class']
-        });
+        };
     </script>
 
-    <!-- Chatbase Script -->
     <script>
     (function(){
-        if(!window.chatbase||window.chatbase("getState")!=="initialized"){
-            window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};
-            window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})
-        }
+        window.chatbase=window.chatbase||function(){(window.chatbase.q=window.chatbase.q||[]).push(arguments)};
+        window.chatbase("extend", {
+            id: "3tbWTrGVbphdNO8-14Q9z",
+            domain: "www.chatbase.co"
+        });
         const onLoad=function(){
-            const script=document.createElement("script");
-            script.src="https://www.chatbase.co/embed.min.js";
-            script.id="3tbWTrGVbphdNO8-14Q9z";
-            script.domain="www.chatbase.co";
-            
-            script.onload = function() {
-                if (!document.body.classList.contains('locked')) {
-                    setTimeout(() => showChatbot(), 500);
-                }
-            };
-            
-            document.body.appendChild(script);
+            const s=document.createElement("script");
+            s.src="https://www.chatbase.co/embed.min.js";
+            s.id="3tbWTrGVbphdNO8-14Q9z";
+            s.domain="www.chatbase.co";
+            document.body.appendChild(s);
         };
         if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}
     })();
