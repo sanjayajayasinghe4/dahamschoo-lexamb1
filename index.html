@@ -72,19 +72,64 @@
         .lesson-card { background: rgba(10, 10, 10, 0.8); border-radius: 15px; overflow: hidden; border: 2px solid rgba(255, 165, 0, 0.3); text-decoration: none; }
         .lesson-thumb { width: 100%; aspect-ratio: 16/9; background-size: cover; background-position: center; }
 
-        /* මුලින්ම බොට්ව හංගන රහස් කෝඩ් එක */
-        #chatbase-bubble-button, #chatbase-bubble-window {
+        /* Chatbase chatbot එක සම්පූර්ණයෙන්ම හංගන්න login කරන තුරු */
+        body.locked #chatbase-bubble-button,
+        body.locked #chatbase-bubble-window,
+        body.locked [id^="chatbase"] {
             display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Unlocked වෙලා තියෙද්දී chatbot එක normal විදිහට පෙන්වන්න */
+        body:not(.locked) #chatbase-bubble-button {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+        
+        body:not(.locked) #chatbase-bubble-window {
+            visibility: visible !important;
+            pointer-events: auto !important;
         }
 
+        /* Mobile responsive chatbot settings */
         @media (max-width: 768px) {
             header h1 { font-size: 1.6em; }
-            /* ෆෝන් එකේදී බොට් එක ලොකුවට එන එක පාලනය කිරීමට */
-            #chatbase-bubble-window { width: 90% !important; height: 70% !important; bottom: 80px !important; }
+            
+            /* Mobile එකේදී chatbot window එක වඩාත් හොඳින් පෙන්වීමට */
+            #chatbase-bubble-window {
+                width: 90% !important;
+                max-width: 400px !important;
+                height: 65vh !important;
+                max-height: 600px !important;
+                bottom: 80px !important;
+                right: 10px !important;
+            }
+            
+            /* Bubble button එක mobile එකේ position එක */
+            #chatbase-bubble-button {
+                bottom: 20px !important;
+                right: 20px !important;
+                width: 60px !important;
+                height: 60px !important;
+            }
+        }
+
+        /* Desktop එකේදී chatbot window එක */
+        @media (min-width: 769px) {
+            #chatbase-bubble-window {
+                width: 400px !important;
+                height: 600px !important;
+                bottom: 100px !important;
+                right: 20px !important;
+            }
         }
     </style>
 </head>
-<body>
+<body class="locked">
 
     <div id="loginOverlay">
         <div class="login-box">
@@ -136,23 +181,78 @@
         function checkAccess() {
             const inputValue = document.getElementById('accessKey').value;
             if (inputValue === secretKey) {
+                // Lock screen එක හංගන්න
                 document.getElementById('loginOverlay').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
                 
-                // --- බොට්ව පෙන්වන කොටස ---
-                setTimeout(() => {
-                    const botBtn = document.getElementById('chatbase-bubble-button');
-                    if(botBtn) {
-                        botBtn.style.setProperty('display', 'block', 'important');
-                    }
-                }, 600);
+                // Body එකෙන් "locked" class එක ඉවත් කරන්න - මෙය chatbot එක පෙන්වයි
+                document.body.classList.remove('locked');
                 
+                // Video load කරන්න
                 loadVideo();
+                
+                // Chatbot එක වහාම පෙන්වන්න
+                showChatbot();
+                
+                // වැඩිදුර checks කරන්න
+                setTimeout(() => {
+                    showChatbot();
+                }, 500);
+                
+                setTimeout(() => {
+                    showChatbot();
+                }, 1000);
+                
+                setTimeout(() => {
+                    showChatbot();
+                }, 2000);
             } else {
                 alert('වැරදි මුරපදයක්!');
                 document.getElementById('accessKey').value = '';
                 document.getElementById('accessKey').focus();
             }
+        }
+
+        function showChatbot() {
+            // Chatbot button හොයාගෙන visible කරන්න
+            const botBtn = document.getElementById('chatbase-bubble-button');
+            const botWindow = document.getElementById('chatbase-bubble-window');
+            
+            // සියලු chatbase elements හොයාගන්න
+            const allChatbaseElements = document.querySelectorAll('[id^="chatbase"]');
+            
+            console.log('=== Chatbot Debug Info ===');
+            console.log('Button found:', !!botBtn);
+            console.log('Window found:', !!botWindow);
+            console.log('Total chatbase elements:', allChatbaseElements.length);
+            
+            if (botBtn) {
+                console.log('Button current display:', window.getComputedStyle(botBtn).display);
+                console.log('Button current visibility:', window.getComputedStyle(botBtn).visibility);
+                
+                // සියලු styles clear කරන්න
+                botBtn.style.cssText = '';
+                // Force visible කරන්න
+                botBtn.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important;';
+                
+                console.log('Button after fix display:', window.getComputedStyle(botBtn).display);
+            } else {
+                console.log('⚠️ Chatbase button එක තවම load වෙලා නෑ!');
+            }
+            
+            if (botWindow) {
+                botWindow.style.cssText = '';
+                botWindow.style.cssText = 'visibility: visible !important; pointer-events: auto !important;';
+            }
+            
+            // සියලු chatbase elements visible කරන්න
+            allChatbaseElements.forEach((el, index) => {
+                console.log(`Element ${index}: id="${el.id}"`);
+                el.style.cssText = '';
+                el.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important;';
+            });
+            
+            console.log('=========================');
         }
 
         function loadVideo() {
@@ -168,8 +268,32 @@
         document.getElementById('accessKey').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') checkAccess();
         });
+
+        // Chatbot load වූ පසු එය හංගන්න locked state එකේදී
+        const chatbotObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.id === 'chatbase-bubble-button' || node.id === 'chatbase-bubble-window') {
+                        // Page එක තවමත් locked නම් chatbot හංගන්න
+                        if (document.body.classList.contains('locked')) {
+                            node.style.setProperty('display', 'none', 'important');
+                            node.style.setProperty('visibility', 'hidden', 'important');
+                            node.style.setProperty('opacity', '0', 'important');
+                            node.style.setProperty('pointer-events', 'none', 'important');
+                        }
+                    }
+                });
+            });
+        });
+
+        // DOM changes නිරීක්ෂණය කරන්න
+        chatbotObserver.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
     </script>
 
+    <!-- Chatbase Script -->
     <script>
     (function(){
         if(!window.chatbase||window.chatbase("getState")!=="initialized"){
@@ -181,7 +305,17 @@
             script.src="https://www.chatbase.co/embed.min.js";
             script.id="3tbWTrGVbphdNO8-14Q9z";
             script.domain="www.chatbase.co";
-            document.body.appendChild(script)
+            
+            // Script load වෙලා ඉවර වෙද්දී check කරන්න
+            script.onload = function() {
+                console.log('✅ Chatbase script loaded successfully');
+                // Unlocked නම් වහාම පෙන්වන්න
+                if (!document.body.classList.contains('locked')) {
+                    setTimeout(() => showChatbot(), 500);
+                }
+            };
+            
+            document.body.appendChild(script);
         };
         if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}
     })();
